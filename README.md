@@ -173,8 +173,8 @@ transfer stalls в tensor parallelism — точно так же как она
 ## Доказательства
 
 **[Логи:](https://github.com/OrakulStudio/-consumer-RTX-4090-Flux2-LoRA/tree/main/Logs)** все файлы в репозитории с именами ПОБЕДА / ЛЕГЕНДА  
-**Видео:** реальный терминал, цифры в реальном времени  
-**Модели:** обученные с Viking Engine опубликованы на CivitAI
+**[Видео:](https://youtu.be/7zPQvcNFFnc)** реальный терминал, цифры в реальном времени  
+**[Модели:](https://civitai.com/models/2619018/aivazovsky-smerti-net-genij-vnov-vzyalsya-za-kist-or-lora-rank-1024-flux2-dev-128-paintings-orakul-studio-publikuyutsya-dve-versii-400-shagov-i-500-shagov)** обученные с Viking Engine опубликованы на CivitAI
 
 🎨 [AI_vazovsky на CivitAI](https://civitai.com/user/orakul_storm) —
 Rank 1024, 128 картин Айвазовского. Включая авторскую подпись
