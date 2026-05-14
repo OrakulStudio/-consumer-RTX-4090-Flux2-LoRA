@@ -1,0 +1,1014 @@
+WARNING:torchao.kernel.intmm:Warning: Detected no triton, on systems without Triton certain kernels will not work
+Running 1 job
+{
+    "type": "diffusion_trainer",
+    "training_folder": "D:\\AI_Models\\ai-toolkit\\output",
+    "sqlite_db_path": "D:\\AI_Models\\ai-toolkit\\aitk_db.db",
+    "device": "cuda",
+    "trigger_word": "mariR1024",
+    "performance_log_every": 10,
+    "network": {
+        "type": "lora",
+        "linear": 512,
+        "linear_alpha": 64,
+        "conv": 64,
+        "conv_alpha": 64,
+        "lokr_full_rank": true,
+        "lokr_factor": -1,
+        "network_kwargs": {
+            "ignore_if_contains": []
+        }
+    },
+    "save": {
+        "dtype": "bf16",
+        "save_every": 100,
+        "max_step_saves_to_keep": 20,
+        "save_format": "diffusers",
+        "push_to_hub": false
+    },
+    "datasets": [
+        {
+            "folder_path": "D:\\AI_Models\\datasets\\mariR1024",
+            "mask_path": null,
+            "mask_min_value": 0.1,
+            "default_caption": "",
+            "caption_ext": "txt",
+            "caption_dropout_rate": 0.05,
+            "cache_latents_to_disk": true,
+            "is_reg": false,
+            "network_weight": 1,
+            "resolution": [
+                512
+            ],
+            "controls": [],
+            "shrink_video_to_frames": true,
+            "num_frames": 1,
+            "flip_x": false,
+            "flip_y": false,
+            "num_repeats": 1,
+            "control_path_1": null,
+            "control_path_2": null,
+            "control_path_3": null
+        }
+    ],
+    "train": {
+        "batch_size": 1,
+        "bypass_guidance_embedding": false,
+        "steps": 2000,
+        "gradient_accumulation": 1,
+        "train_unet": true,
+        "train_text_encoder": false,
+        "gradient_checkpointing": true,
+        "noise_scheduler": "flowmatch",
+        "optimizer": "adafactor",
+        "timestep_type": "weighted",
+        "content_or_style": "balanced",
+        "optimizer_params": {
+            "weight_decay": 0.0001
+        },
+        "unload_text_encoder": true,
+        "cache_text_embeddings": false,
+        "lr": 0.0001,
+        "ema_config": {
+            "use_ema": false,
+            "ema_decay": 0.99
+        },
+        "skip_first_sample": true,
+        "force_first_sample": false,
+        "disable_sampling": true,
+        "dtype": "bf16",
+        "diff_output_preservation": false,
+        "diff_output_preservation_multiplier": 1,
+        "diff_output_preservation_class": "person",
+        "switch_boundary_every": 1,
+        "loss_type": "mse"
+    },
+    "logging": {
+        "log_every": 1,
+        "use_ui_logger": false
+    },
+    "model": {
+        "name_or_path": "black-forest-labs/FLUX.2-dev",
+        "quantize": true,
+        "qtype": "bf8",
+        "quantize_te": true,
+        "qtype_te": "bf8",
+        "arch": "flux2",
+        "low_vram": true,
+        "model_kwargs": {
+            "match_target_res": false
+        },
+        "layer_offloading": true,
+        "layer_offloading_text_encoder_percent": 0.75,
+        "layer_offloading_transformer_percent": 0.75
+    },
+    "sample": {
+        "sampler": "flowmatch",
+        "sample_every": 250,
+        "width": 1024,
+        "height": 1024,
+        "samples": [],
+        "neg": "",
+        "seed": 42,
+        "walk_seed": true,
+        "guidance_scale": 4,
+        "sample_steps": 25,
+        "num_frames": 1,
+        "fps": 1
+    }
+}
+Using SQLite database at D:\AI_Models\ai-toolkit\aitk_db.db
+
+#############################################
+# Running job: mariR1024
+#############################################
+
+
+Running  1 process
+Loading Flux2 model
+Loading transformer
+Quantizing Transformer
+>>> [ORACLE-60] BF8 NATIVE (E5M2) DETECTED - CPU PRE-QUANT MODE
+ - quantizing 56 transformer blocks on CPU
+Quantizing Flux:   0%|          | 0/56 [00:00<?, ?it/s]Quantizing Flux:   2%|▏         | 1/56 [00:01<01:10,  1.27s/it]Quantizing Flux:   4%|▎         | 2/56 [00:02<01:02,  1.15s/it]Quantizing Flux:   5%|▌         | 3/56 [00:03<00:57,  1.08s/it]Quantizing Flux:   7%|▋         | 4/56 [00:04<00:50,  1.02it/s]Quantizing Flux:   9%|▉         | 5/56 [00:05<00:48,  1.05it/s]Quantizing Flux:  11%|█         | 6/56 [00:06<00:48,  1.04it/s]Quantizing Flux:  12%|█▎        | 7/56 [00:06<00:46,  1.05it/s]Quantizing Flux:  14%|█▍        | 8/56 [00:08<00:48,  1.02s/it]Quantizing Flux:  16%|█▌        | 9/56 [00:08<00:43,  1.07it/s]Quantizing Flux:  18%|█▊        | 10/56 [00:09<00:37,  1.24it/s]Quantizing Flux:  20%|█▉        | 11/56 [00:09<00:31,  1.41it/s]Quantizing Flux:  21%|██▏       | 12/56 [00:10<00:29,  1.51it/s]Quantizing Flux:  23%|██▎       | 13/56 [00:11<00:27,  1.58it/s]Quantizing Flux:  25%|██▌       | 14/56 [00:11<00:25,  1.62it/s]Quantizing Flux:  27%|██▋       | 15/56 [00:11<00:22,  1.81it/s]Quantizing Flux:  29%|██▊       | 16/56 [00:12<00:22,  1.80it/s]Quantizing Flux:  30%|███       | 17/56 [00:12<00:19,  2.00it/s]Quantizing Flux:  32%|███▏      | 18/56 [00:13<00:25,  1.50it/s]Quantizing Flux:  34%|███▍      | 19/56 [00:15<00:29,  1.27it/s]Quantizing Flux:  36%|███▌      | 20/56 [00:15<00:26,  1.36it/s]Quantizing Flux:  38%|███▊      | 21/56 [00:16<00:25,  1.38it/s]Quantizing Flux:  39%|███▉      | 22/56 [00:16<00:21,  1.56it/s]Quantizing Flux:  41%|████      | 23/56 [00:17<00:19,  1.67it/s]Quantizing Flux:  43%|████▎     | 24/56 [00:17<00:19,  1.63it/s]Quantizing Flux:  45%|████▍     | 25/56 [00:18<00:17,  1.82it/s]Quantizing Flux:  46%|████▋     | 26/56 [00:19<00:17,  1.72it/s]Quantizing Flux:  48%|████▊     | 27/56 [00:19<00:16,  1.79it/s]Quantizing Flux:  50%|█████     | 28/56 [00:19<00:14,  1.88it/s]Quantizing Flux:  52%|█████▏    | 29/56 [00:20<00:16,  1.65it/s]Quantizing Flux:  54%|█████▎    | 30/56 [00:21<00:13,  1.86it/s]Quantizing Flux:  55%|█████▌    | 31/56 [00:21<00:13,  1.92it/s]Quantizing Flux:  57%|█████▋    | 32/56 [00:22<00:13,  1.73it/s]Quantizing Flux:  59%|█████▉    | 33/56 [00:22<00:12,  1.88it/s]Quantizing Flux:  61%|██████    | 34/56 [00:23<00:12,  1.69it/s]Quantizing Flux:  62%|██████▎   | 35/56 [00:24<00:11,  1.75it/s]Quantizing Flux:  64%|██████▍   | 36/56 [00:24<00:10,  1.86it/s]Quantizing Flux:  66%|██████▌   | 37/56 [00:25<00:11,  1.71it/s]Quantizing Flux:  68%|██████▊   | 38/56 [00:25<00:09,  1.95it/s]Quantizing Flux:  70%|██████▉   | 39/56 [00:26<00:08,  1.92it/s]Quantizing Flux:  71%|███████▏  | 40/56 [00:26<00:09,  1.67it/s]Quantizing Flux:  73%|███████▎  | 41/56 [00:27<00:08,  1.86it/s]Quantizing Flux:  75%|███████▌  | 42/56 [00:27<00:08,  1.74it/s]Quantizing Flux:  77%|███████▋  | 43/56 [00:28<00:06,  1.97it/s]Quantizing Flux:  79%|███████▊  | 44/56 [00:28<00:06,  1.82it/s]Quantizing Flux:  80%|████████  | 45/56 [00:29<00:05,  1.85it/s]Quantizing Flux:  82%|████████▏ | 46/56 [00:30<00:07,  1.27it/s]Quantizing Flux:  84%|████████▍ | 47/56 [00:31<00:06,  1.47it/s]Quantizing Flux:  86%|████████▌ | 48/56 [00:31<00:04,  1.60it/s]Quantizing Flux:  88%|████████▊ | 49/56 [00:32<00:04,  1.52it/s]Quantizing Flux:  89%|████████▉ | 50/56 [00:32<00:03,  1.73it/s]Quantizing Flux:  91%|█████████ | 51/56 [00:33<00:03,  1.44it/s]Quantizing Flux:  93%|█████████▎| 52/56 [00:34<00:02,  1.70it/s]Quantizing Flux:  95%|█████████▍| 53/56 [00:34<00:02,  1.50it/s]Quantizing Flux:  96%|█████████▋| 54/56 [00:35<00:01,  1.56it/s]Quantizing Flux:  98%|█████████▊| 55/56 [00:35<00:00,  1.73it/s]Quantizing Flux: 100%|██████████| 56/56 [00:36<00:00,  1.87it/s]Quantizing Flux: 100%|██████████| 56/56 [00:36<00:00,  1.54it/s]
+`torch_dtype` is deprecated! Use `dtype` instead!
+ - quantizing extras
+Moving transformer to CPU
+Loading Mistral
+Loading checkpoint shards:   0%|          | 0/10 [00:00<?, ?it/s]Loading checkpoint shards:  20%|██        | 2/10 [00:00<00:00, 16.46it/s]Loading checkpoint shards:  70%|███████   | 7/10 [00:00<00:00, 31.32it/s]Loading checkpoint shards: 100%|██████████| 10/10 [00:00<00:00, 37.00it/s]
+The tokenizer you are loading from 'mistralai/Mistral-Small-3.1-24B-Instruct-2503' with an incorrect regex pattern: https://huggingface.co/mistralai/Mistral-Small-3.1-24B-Instruct-2503/discussions/84#69121093e8b480e709447d5e. This will lead to incorrect tokenization. You should set the `fix_mistral_regex=True` flag when loading this tokenizer to fix this issue.
+Quantizing Mistral
+Loading VAE
+Making pipe
+Preparing Model
+Model Loaded
+create LoRA network. base dim (rank): 512, alpha: 512
+neuron dropout: p=None, rank dropout: p=None, module dropout: p=None
+apply LoRA to Conv2d with kernel size (3,3). dim (rank): 64, alpha: 64
+create LoRA for Text Encoder: 0 modules.
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+
+🦾 VIKING ATTACK: RANK 512 | ALPHA 512.0 | SCALE 1.0000 🦾
+>>> [ORACLE-60] HARDWARE FP8 ACTIVE
+
+create LoRA for U-Net: 160 modules.
+enable LoRA for U-Net
+Total training paramiters: 3,120,562,176
+Dataset: D:\AI_Models\datasets\mariR1024
+  -  Preprocessing image dimensions
+  0%|          | 0/21 [00:00<?, ?it/s]100%|██████████| 21/21 [00:00<00:00, 418.41it/s]
+  -  Found 21 images
+Bucket sizes for D:\AI_Models\datasets\mariR1024:
+512x512: 21 files
+1 buckets made
+Caching latents for D:\AI_Models\datasets\mariR1024
+ - Saving latents to disk
+Caching latents to disk:   0%|          | 0/21 [00:00<?, ?it/s]Caching latents to disk:   5%|▍         | 1/21 [00:00<00:07,  2.52it/s]Caching latents to disk:  24%|██▍       | 5/21 [00:00<00:01, 12.08it/s]Caching latents to disk:  43%|████▎     | 9/21 [00:00<00:00, 19.16it/s]Caching latents to disk:  62%|██████▏   | 13/21 [00:00<00:00, 24.35it/s]Caching latents to disk:  81%|████████  | 17/21 [00:00<00:00, 28.16it/s]Caching latents to disk: 100%|██████████| 21/21 [00:00<00:00, 30.91it/s]Caching latents to disk: 100%|██████████| 21/21 [00:00<00:00, 22.42it/s]
+Caching embeddings and unloading text encoder
+
+***** UNLOADING TEXT ENCODER *****
+This will train only with a blank prompt or trigger word, if set
+If this is not what you want, remove the unload_text_encoder flag
+***********************************
+
+Skipping first sample due to config setting
+mariR1024:   0%|          | 0/2000 [00:00<?, ?it/s]mariR1024:   0%|          | 0/2000 [00:49<?, ?it/s, lr: 1.0e-04 loss: 1.032e+00]mariR1024:   0%|          | 0/2000 [00:49<?, ?it/s, lr: 1.0e-04 loss: 1.032e+00]mariR1024:   0%|          | 0/2000 [01:16<?, ?it/s, lr: 1.0e-04 loss: 5.151e-01]mariR1024:   0%|          | 1/2000 [01:25<47:32:27, 85.62s/it, lr: 1.0e-04 loss: 1.532e-01]mariR1024:   0%|          | 2/2000 [01:34<26:21:04, 47.48s/it, lr: 1.0e-04 loss: 9.864e-01]mariR1024:   0%|          | 3/2000 [01:44<19:15:54, 34.73s/it, lr: 1.0e-04 loss: 7.952e-01]mariR1024:   0%|          | 4/2000 [01:53<15:43:41, 28.37s/it, lr: 1.0e-04 loss: 1.085e+00]mariR1024:   0%|          | 5/2000 [02:02<13:35:56, 24.54s/it, lr: 1.0e-04 loss: 4.808e-01]mariR1024:   0%|          | 6/2000 [02:11<12:10:25, 21.98s/it, lr: 1.0e-04 loss: 2.212e-01]mariR1024:   0%|          | 7/2000 [02:21<11:09:37, 20.16s/it, lr: 1.0e-04 loss: 8.663e-01]mariR1024:   0%|          | 8/2000 [02:30<10:24:05, 18.80s/it, lr: 1.0e-04 loss: 2.079e-01]mariR1024:   0%|          | 9/2000 [02:39<9:48:50, 17.75s/it, lr: 1.0e-04 loss: 9.625e-01] mariR1024:   0%|          | 10/2000 [02:48<9:19:52, 16.88s/it, lr: 1.0e-04 loss: 7.038e-01]mariR1024:   1%|          | 11/2000 [02:58<8:56:59, 16.20s/it, lr: 1.0e-04 loss: 1.116e+00]mariR1024:   1%|          | 12/2000 [03:07<8:37:31, 15.62s/it, lr: 1.0e-04 loss: 1.659e-01]mariR1024:   1%|          | 13/2000 [03:16<8:21:05, 15.13s/it, lr: 1.0e-04 loss: 9.985e-01]mariR1024:   1%|          | 14/2000 [03:25<8:06:43, 14.70s/it, lr: 1.0e-04 loss: 9.449e-01]mariR1024:   1%|          | 15/2000 [03:35<7:54:30, 14.34s/it, lr: 1.0e-04 loss: 3.324e-01]mariR1024:   1%|          | 16/2000 [03:44<7:43:37, 14.02s/it, lr: 1.0e-04 loss: 1.145e+00]mariR1024:   1%|          | 17/2000 [03:53<7:33:52, 13.73s/it, lr: 1.0e-04 loss: 6.301e-01]mariR1024:   1%|          | 18/2000 [04:02<7:25:18, 13.48s/it, lr: 1.0e-04 loss: 8.675e-01]mariR1024:   1%|          | 19/2000 [04:11<7:17:37, 13.25s/it, lr: 1.0e-04 loss: 1.104e+00]mariR1024:   1%|          | 20/2000 [04:21<7:10:39, 13.05s/it, lr: 1.0e-04 loss: 7.851e-01]mariR1024:   1%|          | 21/2000 [04:30<7:04:18, 12.86s/it, lr: 1.0e-04 loss: 1.087e+00]mariR1024:   1%|          | 22/2000 [04:39<6:58:37, 12.70s/it, lr: 1.0e-04 loss: 9.510e-01]mariR1024:   1%|          | 23/2000 [04:48<6:53:28, 12.55s/it, lr: 1.0e-04 loss: 9.391e-01]mariR1024:   1%|          | 24/2000 [04:57<6:48:36, 12.41s/it, lr: 1.0e-04 loss: 1.012e+00]mariR1024:   1%|▏         | 25/2000 [05:06<6:44:07, 12.28s/it, lr: 1.0e-04 loss: 8.621e-01]mariR1024:   1%|▏         | 26/2000 [05:16<6:39:56, 12.16s/it, lr: 1.0e-04 loss: 7.130e-01]mariR1024:   1%|▏         | 27/2000 [05:25<6:36:02, 12.04s/it, lr: 1.0e-04 loss: 2.820e-01]mariR1024:   1%|▏         | 28/2000 [05:34<6:32:27, 11.94s/it, lr: 1.0e-04 loss: 3.654e-01]mariR1024:   1%|▏         | 29/2000 [05:43<6:29:12, 11.85s/it, lr: 1.0e-04 loss: 8.849e-01]mariR1024:   2%|▏         | 30/2000 [05:52<6:26:05, 11.76s/it, lr: 1.0e-04 loss: 7.451e-01]mariR1024:   2%|▏         | 31/2000 [06:01<6:23:05, 11.67s/it, lr: 1.0e-04 loss: 1.101e+00]mariR1024:   2%|▏         | 32/2000 [06:11<6:20:31, 11.60s/it, lr: 1.0e-04 loss: 9.322e-01]mariR1024:   2%|▏         | 33/2000 [06:20<6:17:53, 11.53s/it, lr: 1.0e-04 loss: 8.392e-01]mariR1024:   2%|▏         | 34/2000 [06:29<6:15:24, 11.46s/it, lr: 1.0e-04 loss: 3.395e-01]mariR1024:   2%|▏         | 35/2000 [06:38<6:13:01, 11.39s/it, lr: 1.0e-04 loss: 7.561e-01]mariR1024:   2%|▏         | 36/2000 [06:47<6:10:52, 11.33s/it, lr: 1.0e-04 loss: 4.277e-01]mariR1024:   2%|▏         | 37/2000 [06:57<6:08:45, 11.27s/it, lr: 1.0e-04 loss: 3.095e-01]mariR1024:   2%|▏         | 38/2000 [07:06<6:06:53, 11.22s/it, lr: 1.0e-04 loss: 5.866e-01]mariR1024:   2%|▏         | 39/2000 [07:15<6:04:58, 11.17s/it, lr: 1.0e-04 loss: 8.370e-01]mariR1024:   2%|▏         | 40/2000 [07:24<6:03:08, 11.12s/it, lr: 1.0e-04 loss: 1.401e-01]mariR1024:   2%|▏         | 41/2000 [07:33<6:01:21, 11.07s/it, lr: 1.0e-04 loss: 5.406e-01]mariR1024:   2%|▏         | 42/2000 [07:42<5:59:43, 11.02s/it, lr: 1.0e-04 loss: 4.220e-01]mariR1024:   2%|▏         | 43/2000 [07:52<5:58:15, 10.98s/it, lr: 1.0e-04 loss: 5.369e-01]mariR1024:   2%|▏         | 44/2000 [08:01<5:56:53, 10.95s/it, lr: 1.0e-04 loss: 4.540e-01]mariR1024:   2%|▏         | 45/2000 [08:10<5:55:30, 10.91s/it, lr: 1.0e-04 loss: 9.839e-01]mariR1024:   2%|▏         | 46/2000 [08:20<5:54:11, 10.88s/it, lr: 1.0e-04 loss: 1.018e+00]mariR1024:   2%|▏         | 47/2000 [08:29<5:52:48, 10.84s/it, lr: 1.0e-04 loss: 8.162e-01]mariR1024:   2%|▏         | 48/2000 [08:38<5:51:33, 10.81s/it, lr: 1.0e-04 loss: 3.451e-01]mariR1024:   2%|▏         | 49/2000 [08:47<5:50:18, 10.77s/it, lr: 1.0e-04 loss: 6.910e-01]mariR1024:   2%|▎         | 50/2000 [08:57<5:49:06, 10.74s/it, lr: 1.0e-04 loss: 9.112e-01]mariR1024:   3%|▎         | 51/2000 [09:06<5:48:01, 10.71s/it, lr: 1.0e-04 loss: 6.857e-01]mariR1024:   3%|▎         | 52/2000 [09:15<5:46:52, 10.68s/it, lr: 1.0e-04 loss: 4.042e-01]mariR1024:   3%|▎         | 53/2000 [09:24<5:45:47, 10.66s/it, lr: 1.0e-04 loss: 1.037e+00]mariR1024:   3%|▎         | 54/2000 [09:34<5:44:45, 10.63s/it, lr: 1.0e-04 loss: 2.866e-01]mariR1024:   3%|▎         | 55/2000 [09:43<5:43:48, 10.61s/it, lr: 1.0e-04 loss: 9.023e-01]mariR1024:   3%|▎         | 56/2000 [09:52<5:42:48, 10.58s/it, lr: 1.0e-04 loss: 9.203e-01]mariR1024:   3%|▎         | 57/2000 [10:01<5:41:52, 10.56s/it, lr: 1.0e-04 loss: 8.937e-01]mariR1024:   3%|▎         | 58/2000 [10:11<5:41:10, 10.54s/it, lr: 1.0e-04 loss: 3.771e-01]mariR1024:   3%|▎         | 59/2000 [10:20<5:40:20, 10.52s/it, lr: 1.0e-04 loss: 7.613e-01]mariR1024:   3%|▎         | 60/2000 [10:29<5:39:29, 10.50s/it, lr: 1.0e-04 loss: 8.226e-01]mariR1024:   3%|▎         | 61/2000 [10:39<5:38:39, 10.48s/it, lr: 1.0e-04 loss: 9.382e-01]mariR1024:   3%|▎         | 62/2000 [10:48<5:37:53, 10.46s/it, lr: 1.0e-04 loss: 2.304e-01]mariR1024:   3%|▎         | 63/2000 [10:57<5:37:03, 10.44s/it, lr: 1.0e-04 loss: 8.059e-01]mariR1024:   3%|▎         | 64/2000 [11:06<5:36:14, 10.42s/it, lr: 1.0e-04 loss: 4.308e-01]mariR1024:   3%|▎         | 65/2000 [11:16<5:35:26, 10.40s/it, lr: 1.0e-04 loss: 7.675e-01]mariR1024:   3%|▎         | 66/2000 [11:25<5:34:40, 10.38s/it, lr: 1.0e-04 loss: 4.160e-01]mariR1024:   3%|▎         | 67/2000 [11:34<5:33:55, 10.37s/it, lr: 1.0e-04 loss: 5.105e-01]mariR1024:   3%|▎         | 68/2000 [11:43<5:33:13, 10.35s/it, lr: 1.0e-04 loss: 2.008e-01]mariR1024:   3%|▎         | 69/2000 [11:53<5:32:35, 10.33s/it, lr: 1.0e-04 loss: 1.997e-01]mariR1024:   4%|▎         | 70/2000 [12:02<5:31:53, 10.32s/it, lr: 1.0e-04 loss: 4.081e-01]mariR1024:   4%|▎         | 71/2000 [12:11<5:31:13, 10.30s/it, lr: 1.0e-04 loss: 2.306e-01]mariR1024:   4%|▎         | 72/2000 [12:20<5:30:34, 10.29s/it, lr: 1.0e-04 loss: 8.401e-02]mariR1024:   4%|▎         | 73/2000 [12:30<5:29:59, 10.27s/it, lr: 1.0e-04 loss: 8.572e-01]mariR1024:   4%|▎         | 74/2000 [12:39<5:29:23, 10.26s/it, lr: 1.0e-04 loss: 9.879e-01]mariR1024:   4%|▍         | 75/2000 [12:48<5:28:50, 10.25s/it, lr: 1.0e-04 loss: 2.550e-01]mariR1024:   4%|▍         | 76/2000 [12:57<5:28:13, 10.24s/it, lr: 1.0e-04 loss: 6.208e-01]mariR1024:   4%|▍         | 77/2000 [13:07<5:27:35, 10.22s/it, lr: 1.0e-04 loss: 7.164e-01]mariR1024:   4%|▍         | 78/2000 [13:16<5:27:00, 10.21s/it, lr: 1.0e-04 loss: 5.918e-01]mariR1024:   4%|▍         | 79/2000 [13:25<5:26:24, 10.20s/it, lr: 1.0e-04 loss: 6.707e-01]mariR1024:   4%|▍         | 80/2000 [13:34<5:25:49, 10.18s/it, lr: 1.0e-04 loss: 3.811e-01]mariR1024:   4%|▍         | 81/2000 [13:43<5:25:20, 10.17s/it, lr: 1.0e-04 loss: 7.484e-01]mariR1024:   4%|▍         | 82/2000 [13:53<5:24:48, 10.16s/it, lr: 1.0e-04 loss: 9.874e-01]mariR1024:   4%|▍         | 83/2000 [14:02<5:24:18, 10.15s/it, lr: 1.0e-04 loss: 9.836e-01]mariR1024:   4%|▍         | 84/2000 [14:11<5:23:44, 10.14s/it, lr: 1.0e-04 loss: 7.990e-01]mariR1024:   4%|▍         | 85/2000 [14:20<5:23:12, 10.13s/it, lr: 1.0e-04 loss: 3.627e-01]mariR1024:   4%|▍         | 86/2000 [14:29<5:22:41, 10.12s/it, lr: 1.0e-04 loss: 9.035e-01]mariR1024:   4%|▍         | 87/2000 [14:39<5:22:11, 10.11s/it, lr: 1.0e-04 loss: 1.641e-01]mariR1024:   4%|▍         | 88/2000 [14:48<5:21:40, 10.09s/it, lr: 1.0e-04 loss: 3.496e-01]mariR1024:   4%|▍         | 89/2000 [14:57<5:21:10, 10.08s/it, lr: 1.0e-04 loss: 7.576e-03]mariR1024:   4%|▍         | 90/2000 [15:06<5:20:41, 10.07s/it, lr: 1.0e-04 loss: 3.224e-01]mariR1024:   5%|▍         | 91/2000 [15:15<5:20:11, 10.06s/it, lr: 1.0e-04 loss: 1.724e-01]mariR1024:   5%|▍         | 92/2000 [15:25<5:19:44, 10.05s/it, lr: 1.0e-04 loss: 1.135e-01]mariR1024:   5%|▍         | 93/2000 [15:34<5:19:18, 10.05s/it, lr: 1.0e-04 loss: 9.759e-01]mariR1024:   5%|▍         | 94/2000 [15:43<5:18:51, 10.04s/it, lr: 1.0e-04 loss: 2.475e-01]mariR1024:   5%|▍         | 95/2000 [15:52<5:18:22, 10.03s/it, lr: 1.0e-04 loss: 8.874e-01]mariR1024:   5%|▍         | 96/2000 [16:01<5:17:55, 10.02s/it, lr: 1.0e-04 loss: 9.314e-01]mariR1024:   5%|▍         | 97/2000 [16:10<5:17:29, 10.01s/it, lr: 1.0e-04 loss: 3.554e-01]mariR1024:   5%|▍         | 98/2000 [16:20<5:17:04, 10.00s/it, lr: 1.0e-04 loss: 6.049e-01]mariR1024:   5%|▍         | 99/2000 [16:29<5:16:37,  9.99s/it, lr: 1.0e-04 loss: 1.450e-01]mariR1024:   5%|▌         | 100/2000 [16:38<5:16:15,  9.99s/it, lr: 1.0e-04 loss: 7.179e-01]mariR1024:   5%|▌         | 101/2000 [16:46<5:15:16,  9.96s/it, lr: 1.0e-04 loss: 2.479e-01]mariR1024:   5%|▌         | 102/2000 [16:53<5:14:15,  9.93s/it, lr: 1.0e-04 loss: 1.754e-01]mariR1024:   5%|▌         | 103/2000 [17:00<5:13:14,  9.91s/it, lr: 1.0e-04 loss: 5.181e-01]mariR1024:   5%|▌         | 104/2000 [17:07<5:12:16,  9.88s/it, lr: 1.0e-04 loss: 6.308e-01]mariR1024:   5%|▌         | 105/2000 [17:15<5:11:20,  9.86s/it, lr: 1.0e-04 loss: 6.045e-01]mariR1024:   5%|▌         | 106/2000 [17:22<5:10:23,  9.83s/it, lr: 1.0e-04 loss: 2.806e-01]mariR1024:   5%|▌         | 107/2000 [17:29<5:09:28,  9.81s/it, lr: 1.0e-04 loss: 1.213e+00]mariR1024:   5%|▌         | 108/2000 [17:36<5:08:32,  9.78s/it, lr: 1.0e-04 loss: 7.012e-01]mariR1024:   5%|▌         | 109/2000 [17:43<5:07:38,  9.76s/it, lr: 1.0e-04 loss: 7.753e-01]mariR1024:   6%|▌         | 110/2000 [17:51<5:06:44,  9.74s/it, lr: 1.0e-04 loss: 9.986e-01]mariR1024:   6%|▌         | 111/2000 [17:58<5:05:55,  9.72s/it, lr: 1.0e-04 loss: 6.766e-01]mariR1024:   6%|▌         | 112/2000 [18:05<5:05:03,  9.69s/it, lr: 1.0e-04 loss: 2.080e-01]mariR1024:   6%|▌         | 113/2000 [18:13<5:04:12,  9.67s/it, lr: 1.0e-04 loss: 3.541e-01]mariR1024:   6%|▌         | 114/2000 [18:20<5:03:22,  9.65s/it, lr: 1.0e-04 loss: 4.481e-01]mariR1024:   6%|▌         | 115/2000 [18:27<5:02:32,  9.63s/it, lr: 1.0e-04 loss: 5.028e-01]mariR1024:   6%|▌         | 116/2000 [18:34<5:01:44,  9.61s/it, lr: 1.0e-04 loss: 3.412e-01]mariR1024:   6%|▌         | 117/2000 [18:41<5:00:55,  9.59s/it, lr: 1.0e-04 loss: 8.473e-01]mariR1024:   6%|▌         | 118/2000 [18:49<5:00:08,  9.57s/it, lr: 1.0e-04 loss: 7.555e-01]mariR1024:   6%|▌         | 119/2000 [18:56<4:59:22,  9.55s/it, lr: 1.0e-04 loss: 7.851e-01]mariR1024:   6%|▌         | 120/2000 [19:03<4:58:38,  9.53s/it, lr: 1.0e-04 loss: 8.843e-01]mariR1024:   6%|▌         | 121/2000 [19:10<4:57:52,  9.51s/it, lr: 1.0e-04 loss: 2.000e-02]mariR1024:   6%|▌         | 122/2000 [19:18<4:57:07,  9.49s/it, lr: 1.0e-04 loss: 7.407e-01]mariR1024:   6%|▌         | 123/2000 [19:25<4:56:24,  9.48s/it, lr: 1.0e-04 loss: 1.573e-01]mariR1024:   6%|▌         | 124/2000 [19:32<4:55:44,  9.46s/it, lr: 1.0e-04 loss: 7.264e-01]mariR1024:   6%|▋         | 125/2000 [19:40<4:55:00,  9.44s/it, lr: 1.0e-04 loss: 4.253e-01]mariR1024:   6%|▋         | 126/2000 [19:47<4:54:16,  9.42s/it, lr: 1.0e-04 loss: 8.256e-01]mariR1024:   6%|▋         | 127/2000 [19:54<4:53:34,  9.40s/it, lr: 1.0e-04 loss: 1.044e+00]mariR1024:   6%|▋         | 128/2000 [20:01<4:52:52,  9.39s/it, lr: 1.0e-04 loss: 1.066e+00]mariR1024:   6%|▋         | 129/2000 [20:08<4:52:15,  9.37s/it, lr: 1.0e-04 loss: 5.940e-01]mariR1024:   6%|▋         | 130/2000 [20:16<4:51:35,  9.36s/it, lr: 1.0e-04 loss: 9.463e-01]mariR1024:   7%|▋         | 131/2000 [20:23<4:50:54,  9.34s/it, lr: 1.0e-04 loss: 6.248e-01]mariR1024:   7%|▋         | 132/2000 [20:30<4:50:14,  9.32s/it, lr: 1.0e-04 loss: 1.019e+00]mariR1024:   7%|▋         | 133/2000 [20:37<4:49:35,  9.31s/it, lr: 1.0e-04 loss: 2.552e-01]mariR1024:   7%|▋         | 134/2000 [20:44<4:48:56,  9.29s/it, lr: 1.0e-04 loss: 9.502e-01]mariR1024:   7%|▋         | 135/2000 [20:52<4:48:17,  9.27s/it, lr: 1.0e-04 loss: 3.195e-01]mariR1024:   7%|▋         | 136/2000 [20:59<4:47:40,  9.26s/it, lr: 1.0e-04 loss: 5.795e-01]mariR1024:   7%|▋         | 137/2000 [21:06<4:47:06,  9.25s/it, lr: 1.0e-04 loss: 3.460e-01]mariR1024:   7%|▋         | 138/2000 [21:14<4:46:31,  9.23s/it, lr: 1.0e-04 loss: 6.742e-01]mariR1024:   7%|▋         | 139/2000 [21:21<4:45:55,  9.22s/it, lr: 1.0e-04 loss: 6.789e-01]mariR1024:   7%|▋         | 140/2000 [21:28<4:45:21,  9.21s/it, lr: 1.0e-04 loss: 8.858e-01]mariR1024:   7%|▋         | 141/2000 [21:36<4:44:48,  9.19s/it, lr: 1.0e-04 loss: 4.796e-01]mariR1024:   7%|▋         | 142/2000 [21:43<4:44:12,  9.18s/it, lr: 1.0e-04 loss: 4.209e-01]mariR1024:   7%|▋         | 143/2000 [21:50<4:43:37,  9.16s/it, lr: 1.0e-04 loss: 7.343e-01]mariR1024:   7%|▋         | 144/2000 [21:57<4:43:02,  9.15s/it, lr: 1.0e-04 loss: 1.084e+00]mariR1024:   7%|▋         | 145/2000 [22:04<4:42:29,  9.14s/it, lr: 1.0e-04 loss: 7.808e-01]mariR1024:   7%|▋         | 146/2000 [22:12<4:41:56,  9.12s/it, lr: 1.0e-04 loss: 6.893e-01]mariR1024:   7%|▋         | 147/2000 [22:19<4:41:22,  9.11s/it, lr: 1.0e-04 loss: 6.768e-01]mariR1024:   7%|▋         | 148/2000 [22:26<4:40:50,  9.10s/it, lr: 1.0e-04 loss: 3.796e-01]mariR1024:   7%|▋         | 149/2000 [22:33<4:40:17,  9.09s/it, lr: 1.0e-04 loss: 3.677e-01]mariR1024:   8%|▊         | 150/2000 [22:41<4:39:45,  9.07s/it, lr: 1.0e-04 loss: 9.323e-01]mariR1024:   8%|▊         | 151/2000 [22:48<4:39:14,  9.06s/it, lr: 1.0e-04 loss: 1.004e+00]mariR1024:   8%|▊         | 152/2000 [22:55<4:38:44,  9.05s/it, lr: 1.0e-04 loss: 7.004e-01]mariR1024:   8%|▊         | 153/2000 [23:02<4:38:15,  9.04s/it, lr: 1.0e-04 loss: 8.943e-01]mariR1024:   8%|▊         | 154/2000 [23:10<4:37:47,  9.03s/it, lr: 1.0e-04 loss: 4.763e-01]mariR1024:   8%|▊         | 155/2000 [23:17<4:37:17,  9.02s/it, lr: 1.0e-04 loss: 7.324e-01]mariR1024:   8%|▊         | 156/2000 [23:24<4:36:46,  9.01s/it, lr: 1.0e-04 loss: 1.359e-01]mariR1024:   8%|▊         | 157/2000 [23:32<4:36:16,  8.99s/it, lr: 1.0e-04 loss: 2.672e-01]mariR1024:   8%|▊         | 158/2000 [23:39<4:35:47,  8.98s/it, lr: 1.0e-04 loss: 9.692e-01]mariR1024:   8%|▊         | 159/2000 [23:46<4:35:17,  8.97s/it, lr: 1.0e-04 loss: 1.191e+00]mariR1024:   8%|▊         | 160/2000 [23:53<4:34:47,  8.96s/it, lr: 1.0e-04 loss: 8.245e-01]mariR1024:   8%|▊         | 161/2000 [24:01<4:34:22,  8.95s/it, lr: 1.0e-04 loss: 1.072e+00]mariR1024:   8%|▊         | 162/2000 [24:08<4:33:53,  8.94s/it, lr: 1.0e-04 loss: 5.026e-01]mariR1024:   8%|▊         | 163/2000 [24:15<4:33:24,  8.93s/it, lr: 1.0e-04 loss: 9.032e-01]mariR1024:   8%|▊         | 164/2000 [24:22<4:32:57,  8.92s/it, lr: 1.0e-04 loss: 7.280e-01]mariR1024:   8%|▊         | 165/2000 [24:30<4:32:29,  8.91s/it, lr: 1.0e-04 loss: 9.234e-01]mariR1024:   8%|▊         | 166/2000 [24:37<4:32:03,  8.90s/it, lr: 1.0e-04 loss: 5.558e-01]mariR1024:   8%|▊         | 167/2000 [24:44<4:31:35,  8.89s/it, lr: 1.0e-04 loss: 4.584e-01]mariR1024:   8%|▊         | 168/2000 [24:51<4:31:08,  8.88s/it, lr: 1.0e-04 loss: 1.031e+00]mariR1024:   8%|▊         | 169/2000 [24:59<4:30:42,  8.87s/it, lr: 1.0e-04 loss: 8.182e-01]
+Timer 'mariR1024 Timer':
+ - 11.0507s avg - train_loop, num = 10
+ - 6.8854s avg - backward, num = 10
+ - 3.5720s avg - predict_unet, num = 10
+ - 0.5259s avg - optimizer_step, num = 10
+ - 0.0008s avg - get_batch, num = 10
+ - 0.0006s avg - calculate_loss, num = 10
+ - 0.0004s avg - preprocess_batch, num = 10
+ - 0.0002s avg - make_noisy_latents, num = 10
+ - 0.0002s avg - batch_cleanup, num = 10
+ - 0.0002s avg - prepare_latents, num = 10
+ - 0.0002s avg - encode_prompt, num = 10
+ - 0.0000s avg - prepare_prompt, num = 10
+ - 0.0000s avg - prepare_scheduler, num = 10
+ - 0.0000s avg - prepare_timesteps_indices, num = 10
+ - 0.0000s avg - convert_timestep_indices_to_timesteps, num = 10
+ - 0.0000s avg - prepare_noise, num = 10
+ - 0.0000s avg - grad_setup, num = 10
+ - 0.0000s avg - condition_noisy_latents, num = 10
+ - 0.0000s avg - scheduler_step, num = 10
+ - 0.0000s avg - commit_logger, num = 10
+ - 0.0000s avg - log_to_tensorboard, num = 10
+
+
+Timer 'mariR1024 Timer':
+ - 9.2126s avg - train_loop, num = 10
+ - 6.0039s avg - backward, num = 10
+ - 2.8227s avg - predict_unet, num = 10
+ - 0.3462s avg - optimizer_step, num = 10
+ - 0.0005s avg - preprocess_batch, num = 10
+ - 0.0003s avg - make_noisy_latents, num = 10
+ - 0.0003s avg - get_batch, num = 10
+ - 0.0003s avg - calculate_loss, num = 10
+ - 0.0002s avg - prepare_latents, num = 10
+ - 0.0002s avg - grad_setup, num = 10
+ - 0.0000s avg - commit_logger, num = 10
+ - 0.0000s avg - prepare_prompt, num = 10
+ - 0.0000s avg - prepare_scheduler, num = 10
+ - 0.0000s avg - prepare_timesteps_indices, num = 10
+ - 0.0000s avg - convert_timestep_indices_to_timesteps, num = 10
+ - 0.0000s avg - prepare_noise, num = 10
+ - 0.0000s avg - encode_prompt, num = 10
+ - 0.0000s avg - condition_noisy_latents, num = 10
+ - 0.0000s avg - scheduler_step, num = 10
+ - 0.0000s avg - batch_cleanup, num = 10
+ - 0.0000s avg - log_to_tensorboard, num = 10
+
+
+Timer 'mariR1024 Timer':
+ - 9.1761s avg - train_loop, num = 10
+ - 5.9704s avg - backward, num = 10
+ - 2.8191s avg - predict_unet, num = 10
+ - 0.3460s avg - optimizer_step, num = 10
+ - 0.0008s avg - get_batch, num = 10
+ - 0.0007s avg - calculate_loss, num = 10
+ - 0.0004s avg - preprocess_batch, num = 10
+ - 0.0003s avg - batch_cleanup, num = 10
+ - 0.0002s avg - prepare_latents, num = 10
+ - 0.0002s avg - make_noisy_latents, num = 10
+ - 0.0002s avg - encode_prompt, num = 10
+ - 0.0000s avg - commit_logger, num = 10
+ - 0.0000s avg - reset_batch, num = 1
+ - 0.0000s avg - prepare_prompt, num = 10
+ - 0.0000s avg - prepare_scheduler, num = 10
+ - 0.0000s avg - prepare_timesteps_indices, num = 10
+ - 0.0000s avg - convert_timestep_indices_to_timesteps, num = 10
+ - 0.0000s avg - prepare_noise, num = 10
+ - 0.0000s avg - grad_setup, num = 10
+ - 0.0000s avg - condition_noisy_latents, num = 10
+ - 0.0000s avg - scheduler_step, num = 10
+ - 0.0000s avg - log_to_tensorboard, num = 10
+
+
+Timer 'mariR1024 Timer':
+ - 9.1911s avg - train_loop, num = 10
+ - 5.9726s avg - backward, num = 10
+ - 2.8327s avg - predict_unet, num = 10
+ - 0.3460s avg - optimizer_step, num = 10
+ - 0.0008s avg - get_batch, num = 10
+ - 0.0005s avg - calculate_loss, num = 10
+ - 0.0002s avg - condition_noisy_latents, num = 10
+ - 0.0002s avg - preprocess_batch, num = 10
+ - 0.0002s avg - prepare_prompt, num = 10
+ - 0.0000s avg - commit_logger, num = 10
+ - 0.0000s avg - prepare_latents, num = 10
+ - 0.0000s avg - prepare_scheduler, num = 10
+ - 0.0000s avg - prepare_timesteps_indices, num = 10
+ - 0.0000s avg - convert_timestep_indices_to_timesteps, num = 10
+ - 0.0000s avg - prepare_noise, num = 10
+ - 0.0000s avg - make_noisy_latents, num = 10
+ - 0.0000s avg - grad_setup, num = 10
+ - 0.0000s avg - encode_prompt, num = 10
+ - 0.0000s avg - scheduler_step, num = 10
+ - 0.0000s avg - batch_cleanup, num = 10
+ - 0.0000s avg - log_to_tensorboard, num = 10
+
+
+Timer 'mariR1024 Timer':
+ - 9.2369s avg - train_loop, num = 10
+ - 6.0160s avg - backward, num = 10
+ - 2.8342s avg - predict_unet, num = 10
+ - 0.3455s avg - optimizer_step, num = 10
+ - 0.0009s avg - get_batch, num = 10
+ - 0.0005s avg - calculate_loss, num = 10
+ - 0.0002s avg - preprocess_batch, num = 10
+ - 0.0002s avg - make_noisy_latents, num = 10
+ - 0.0000s avg - commit_logger, num = 10
+ - 0.0000s avg - prepare_prompt, num = 10
+ - 0.0000s avg - prepare_latents, num = 10
+ - 0.0000s avg - prepare_scheduler, num = 10
+ - 0.0000s avg - prepare_timesteps_indices, num = 10
+ - 0.0000s avg - convert_timestep_indices_to_timesteps, num = 10
+ - 0.0000s avg - prepare_noise, num = 10
+ - 0.0000s avg - grad_setup, num = 10
+ - 0.0000s avg - encode_prompt, num = 10
+ - 0.0000s avg - condition_noisy_latents, num = 10
+ - 0.0000s avg - scheduler_step, num = 10
+ - 0.0000s avg - batch_cleanup, num = 10
+ - 0.0000s avg - log_to_tensorboard, num = 10
+ - 0.0000s avg - reset_batch, num = 1
+
+
+Timer 'mariR1024 Timer':
+ - 9.2825s avg - train_loop, num = 10
+ - 6.0329s avg - backward, num = 10
+ - 2.8645s avg - predict_unet, num = 10
+ - 0.3469s avg - optimizer_step, num = 10
+ - 0.0007s avg - batch_cleanup, num = 10
+ - 0.0004s avg - get_batch, num = 10
+ - 0.0003s avg - preprocess_batch, num = 10
+ - 0.0002s avg - prepare_noise, num = 10
+ - 0.0001s avg - prepare_scheduler, num = 10
+ - 0.0000s avg - commit_logger, num = 10
+ - 0.0000s avg - prepare_prompt, num = 10
+ - 0.0000s avg - prepare_latents, num = 10
+ - 0.0000s avg - prepare_timesteps_indices, num = 10
+ - 0.0000s avg - convert_timestep_indices_to_timesteps, num = 10
+ - 0.0000s avg - make_noisy_latents, num = 10
+ - 0.0000s avg - grad_setup, num = 10
+ - 0.0000s avg - encode_prompt, num = 10
+ - 0.0000s avg - condition_noisy_latents, num = 10
+ - 0.0000s avg - calculate_loss, num = 10
+ - 0.0000s avg - scheduler_step, num = 10
+ - 0.0000s avg - log_to_tensorboard, num = 10
+
+
+Timer 'mariR1024 Timer':
+ - 9.2354s avg - train_loop, num = 10
+ - 6.0156s avg - backward, num = 10
+ - 2.8338s avg - predict_unet, num = 10
+ - 0.3447s avg - optimizer_step, num = 10
+ - 0.0007s avg - preprocess_batch, num = 10
+ - 0.0005s avg - get_batch, num = 10
+ - 0.0003s avg - calculate_loss, num = 10
+ - 0.0002s avg - batch_cleanup, num = 10
+ - 0.0002s avg - prepare_noise, num = 10
+ - 0.0002s avg - prepare_scheduler, num = 10
+ - 0.0002s avg - prepare_latents, num = 10
+ - 0.0000s avg - commit_logger, num = 10
+ - 0.0000s avg - prepare_prompt, num = 10
+ - 0.0000s avg - prepare_timesteps_indices, num = 10
+ - 0.0000s avg - convert_timestep_indices_to_timesteps, num = 10
+ - 0.0000s avg - make_noisy_latents, num = 10
+ - 0.0000s avg - grad_setup, num = 10
+ - 0.0000s avg - encode_prompt, num = 10
+ - 0.0000s avg - condition_noisy_latents, num = 10
+ - 0.0000s avg - scheduler_step, num = 10
+ - 0.0000s avg - log_to_tensorboard, num = 10
+ - 0.0000s avg - reset_batch, num = 1
+
+
+Timer 'mariR1024 Timer':
+ - 9.2349s avg - train_loop, num = 10
+ - 6.0166s avg - backward, num = 10
+ - 2.8318s avg - predict_unet, num = 10
+ - 0.3459s avg - optimizer_step, num = 10
+ - 0.0009s avg - get_batch, num = 10
+ - 0.0006s avg - preprocess_batch, num = 10
+ - 0.0005s avg - calculate_loss, num = 10
+ - 0.0003s avg - prepare_timesteps_indices, num = 10
+ - 0.0002s avg - prepare_prompt, num = 10
+ - 0.0002s avg - prepare_latents, num = 10
+ - 0.0000s avg - commit_logger, num = 10
+ - 0.0000s avg - prepare_scheduler, num = 10
+ - 0.0000s avg - convert_timestep_indices_to_timesteps, num = 10
+ - 0.0000s avg - prepare_noise, num = 10
+ - 0.0000s avg - make_noisy_latents, num = 10
+ - 0.0000s avg - grad_setup, num = 10
+ - 0.0000s avg - encode_prompt, num = 10
+ - 0.0000s avg - condition_noisy_latents, num = 10
+ - 0.0000s avg - scheduler_step, num = 10
+ - 0.0000s avg - batch_cleanup, num = 10
+ - 0.0000s avg - log_to_tensorboard, num = 10
+
+
+Timer 'mariR1024 Timer':
+ - 9.2075s avg - train_loop, num = 10
+ - 5.9823s avg - backward, num = 10
+ - 2.8392s avg - predict_unet, num = 10
+ - 0.3467s avg - optimizer_step, num = 10
+ - 0.0004s avg - get_batch, num = 10
+ - 0.0002s avg - batch_cleanup, num = 10
+ - 0.0002s avg - preprocess_batch, num = 10
+mariR1024:   8%|▊         | 170/2000 [25:06<4:30:15,  8.86s/it, lr: 1.0e-04 loss: 4.520e-01]mariR1024:   9%|▊         | 171/2000 [25:13<4:29:49,  8.85s/it, lr: 1.0e-04 loss: 5.860e-01]mariR1024:   9%|▊         | 172/2000 [25:20<4:29:23,  8.84s/it, lr: 1.0e-04 loss: 1.163e+00]mariR1024:   9%|▊         | 173/2000 [25:27<4:28:56,  8.83s/it, lr: 1.0e-04 loss: 4.711e-01]mariR1024:   9%|▊         | 174/2000 [25:35<4:28:30,  8.82s/it, lr: 1.0e-04 loss: 7.725e-01]mariR1024:   9%|▉         | 175/2000 [25:42<4:28:04,  8.81s/it, lr: 1.0e-04 loss: 2.101e-01]mariR1024:   9%|▉         | 176/2000 [25:49<4:27:38,  8.80s/it, lr: 1.0e-04 loss: 8.050e-01]mariR1024:   9%|▉         | 177/2000 [25:56<4:27:15,  8.80s/it, lr: 1.0e-04 loss: 6.219e-01]mariR1024:   9%|▉         | 178/2000 [26:04<4:26:51,  8.79s/it, lr: 1.0e-04 loss: 4.801e-01]mariR1024:   9%|▉         | 179/2000 [26:11<4:26:25,  8.78s/it, lr: 1.0e-04 loss: 3.746e-01]mariR1024:   9%|▉         | 180/2000 [26:18<4:26:04,  8.77s/it, lr: 1.0e-04 loss: 9.322e-01]mariR1024:   9%|▉         | 181/2000 [26:26<4:25:41,  8.76s/it, lr: 1.0e-04 loss: 8.456e-01]mariR1024:   9%|▉         | 182/2000 [26:33<4:25:17,  8.76s/it, lr: 1.0e-04 loss: 9.036e-01]mariR1024:   9%|▉         | 183/2000 [26:40<4:24:54,  8.75s/it, lr: 1.0e-04 loss: 2.185e-01]mariR1024:   9%|▉         | 184/2000 [26:48<4:24:31,  8.74s/it, lr: 1.0e-04 loss: 9.113e-01]mariR1024:   9%|▉         | 185/2000 [26:55<4:24:07,  8.73s/it, lr: 1.0e-04 loss: 7.474e-01]mariR1024:   9%|▉         | 186/2000 [27:02<4:23:44,  8.72s/it, lr: 1.0e-04 loss: 7.665e-01]mariR1024:   9%|▉         | 187/2000 [27:10<4:23:23,  8.72s/it, lr: 1.0e-04 loss: 8.019e-01]mariR1024:   9%|▉         | 188/2000 [27:17<4:23:00,  8.71s/it, lr: 1.0e-04 loss: 5.426e-02]mariR1024:   9%|▉         | 189/2000 [27:24<4:22:36,  8.70s/it, lr: 1.0e-04 loss: 1.056e+00]mariR1024:  10%|▉         | 190/2000 [27:31<4:22:16,  8.69s/it, lr: 1.0e-04 loss: 8.085e-01]mariR1024:  10%|▉         | 191/2000 [27:39<4:21:53,  8.69s/it, lr: 1.0e-04 loss: 6.355e-01]mariR1024:  10%|▉         | 192/2000 [27:46<4:21:31,  8.68s/it, lr: 1.0e-04 loss: 5.308e-01]mariR1024:  10%|▉         | 193/2000 [27:54<4:21:13,  8.67s/it, lr: 1.0e-04 loss: 7.557e-02]mariR1024:  10%|▉         | 194/2000 [28:01<4:20:52,  8.67s/it, lr: 1.0e-04 loss: 9.877e-01]mariR1024:  10%|▉         | 195/2000 [28:08<4:20:30,  8.66s/it, lr: 1.0e-04 loss: 1.880e-01]mariR1024:  10%|▉         | 196/2000 [28:15<4:20:08,  8.65s/it, lr: 1.0e-04 loss: 8.345e-01]mariR1024:  10%|▉         | 197/2000 [28:23<4:19:46,  8.64s/it, lr: 1.0e-04 loss: 7.754e-01]mariR1024:  10%|▉         | 198/2000 [28:30<4:19:25,  8.64s/it, lr: 1.0e-04 loss: 5.010e-01]mariR1024:  10%|▉         | 199/2000 [28:37<4:19:04,  8.63s/it, lr: 1.0e-04 loss: 4.718e-01]mariR1024:  10%|█         | 200/2000 [28:45<4:18:53,  8.63s/it, lr: 1.0e-04 loss: 2.588e-01]mariR1024:  10%|█         | 201/2000 [28:57<4:19:13,  8.65s/it, lr: 1.0e-04 loss: 6.076e-01]mariR1024:  10%|█         | 202/2000 [29:09<4:19:32,  8.66s/it, lr: 1.0e-04 loss: 6.996e-01]mariR1024:  10%|█         | 203/2000 [29:21<4:19:54,  8.68s/it, lr: 1.0e-04 loss: 9.097e-01]mariR1024:  10%|█         | 204/2000 [29:33<4:20:15,  8.69s/it, lr: 1.0e-04 loss: 7.422e-01]mariR1024:  10%|█         | 205/2000 [29:45<4:20:33,  8.71s/it, lr: 1.0e-04 loss: 6.707e-01]mariR1024:  10%|█         | 206/2000 [29:57<4:20:56,  8.73s/it, lr: 1.0e-04 loss: 4.108e-01]mariR1024:  10%|█         | 207/2000 [30:10<4:21:20,  8.75s/it, lr: 1.0e-04 loss: 8.568e-01]mariR1024:  10%|█         | 208/2000 [30:22<4:21:44,  8.76s/it, lr: 1.0e-04 loss: 8.518e-01]mariR1024:  10%|█         | 209/2000 [30:35<4:22:05,  8.78s/it, lr: 1.0e-04 loss: 3.590e-01]mariR1024:  10%|█         | 210/2000 [30:47<4:22:25,  8.80s/it, lr: 1.0e-04 loss: 7.223e-01]mariR1024:  11%|█         | 211/2000 [30:59<4:22:46,  8.81s/it, lr: 1.0e-04 loss: 6.682e-01]mariR1024:  11%|█         | 212/2000 [31:11<4:23:07,  8.83s/it, lr: 1.0e-04 loss: 9.996e-01]mariR1024:  11%|█         | 213/2000 [31:24<4:23:27,  8.85s/it, lr: 1.0e-04 loss: 8.364e-01]mariR1024:  11%|█         | 214/2000 [31:36<4:23:47,  8.86s/it, lr: 1.0e-04 loss: 3.841e-01]mariR1024:  11%|█         | 215/2000 [31:48<4:24:08,  8.88s/it, lr: 1.0e-04 loss: 6.839e-01]mariR1024:  11%|█         | 216/2000 [32:01<4:24:26,  8.89s/it, lr: 1.0e-04 loss: 8.965e-01]mariR1024:  11%|█         | 217/2000 [32:13<4:24:46,  8.91s/it, lr: 1.0e-04 loss: 4.579e-01]mariR1024:  11%|█         | 218/2000 [32:25<4:25:06,  8.93s/it, lr: 1.0e-04 loss: 8.388e-01]mariR1024:  11%|█         | 219/2000 [32:38<4:25:24,  8.94s/it, lr: 1.0e-04 loss: 6.616e-01]mariR1024:  11%|█         | 220/2000 [32:50<4:25:40,  8.96s/it, lr: 1.0e-04 loss: 4.311e-01]mariR1024:  11%|█         | 221/2000 [33:02<4:25:58,  8.97s/it, lr: 1.0e-04 loss: 2.775e-01]
